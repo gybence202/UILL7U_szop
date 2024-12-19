@@ -1,0 +1,129 @@
+openapi: 3.0.0
+info:
+  title: Film Streaming API
+  description: API for managing films and series in a streaming application.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /films:
+    get:
+      summary: Get all films
+      responses:
+        '200':
+          description: A list of films
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Film'
+    post:
+      summary: Create a new film
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+      responses:
+        '201':
+          description: Film created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+  /films/{id}:
+    get:
+      summary: Get a film by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the film
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A film object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '404':
+          description: Film not found
+    put:
+      summary: Update a film by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the film
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+      responses:
+        '200':
+          description: Film updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '404':
+          description: Film not found
+    delete:
+      summary: Delete a film by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the film
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Film deleted
+        '404':
+          description: Film not found
+  /sajatlista:
+    get:
+      summary: Get user's film list
+      responses:
+        '200':
+          description: A list of user's films
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Film'
+components:
+  schemas:
+    Film:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        genre:
+          type: string
+        duration:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        streamingDate:
+          type: string
+          format: date
+        type:
+          type: string
+          enum: [film, series]
+        imageUrl:
+          type: string
+          format: uri
