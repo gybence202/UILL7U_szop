@@ -1,61 +1,18 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/style.css">
-    <style>
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px;
-            width: 300px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .card img {
-            max-width: 100%;
-            border-radius: 8px 8px 0 0;
-        }
-        .card h2 {
-            font-size: 1.5em;
-            margin: 0;
-        }
-        .card p {
-            margin: 8px 0;
-        }
-        .dropdown {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .dropdown-content {
-            display: none;
-            text-align: left;
-            margin: 0 auto;
-            width: 300px;
-        }
-        .dropdown-content input, .dropdown-content select {
-            width: 100%;
-            padding: 8px;
-            margin: 8px 0;
-            box-sizing: border-box;
-        }
-        .dropdown-content button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .dropdown-content button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <title>Film Streaming App - Saját Lista</title>
     <script>
+        // Dropdown visibility
         function toggleDropdown() {
             const content = document.getElementById('dropdown-content');
             content.style.display = content.style.display === 'block' ? 'none' : 'block';
         }
 
+        // Add new film
         async function addFilm(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
@@ -75,19 +32,86 @@
                 alert('Nem sikerült hozzáadni!');
             }
         }
+
+        // Delete film
+        async function deleteFilm(id) {
+            const response = await fetch(`/sajatlista/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Nem sikerült törölni!');
+            }
+        }
+
+        // Edit film
+        function editFilm(id) {
+            const card = document.getElementById(`film-${id}`);
+            const textElements = card.querySelectorAll('.text');
+            const inputElements = card.querySelectorAll('.editable');
+            const saveBtn = card.querySelector('.save-btn');
+            textElements.forEach(text => text.style.display = 'none');
+            inputElements.forEach(input => input.style.display = 'block');
+            saveBtn.style.display = 'block';
+        }
+
+        // Save film
+        async function saveFilm(id) {
+            const card = document.getElementById(`film-${id}`);
+            const inputs = card.querySelectorAll('.editable');
+            const filmData = {};
+            inputs.forEach(input => {
+                filmData[input.name] = input.value;
+            });
+
+            const response = await fetch(`/sajatlista/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(filmData)
+            });
+
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Nem sikerült menteni!');
+            }
+        }
+
+        // Logout
+        async function logout() {
+            const response = await fetch('/logout', {
+                method: 'POST'
+            });
+
+            if (response.ok) {
+                window.location.href = '/';
+            } else {
+                alert('Nem sikerült kijelentkezni!');
+            }
+        }
     </script>
 </head>
 <body>
+    <div class="header-container">
+        <h1 class="sjl">Saját Lista</h1>
+        <button class="logout-button" onclick="logout()">Kijelentkezés</button>
+    </div>
     <div class="dropdown">
-        <button onclick="toggleDropdown()">Új Hozzáadás</button>
+        <button onclick="toggleDropdown()" class="button" style="margin-left: 15px;">Új Hozzáadás</button>
         <div id="dropdown-content" class="dropdown-content">
             <form onsubmit="addFilm(event)">
-                <input type="text" name="title" placeholder="Cím" required>
-                <select name="genre" required>
+                Cím<input type="text" name="title" required>
+                Műfaj<select name="genre" required>
                     <option value="Action">Akció</option>
                     <option value="Comedy">Vígjáték</option>
                     <option value="Drama">Dráma</option>
                     <option value="Horror">Horror</option>
+                    <option value="War">Háború</option>
+                    <option value="Adventure">Kaland</option>
                     <option value="Romance">Romantikus</option>
                     <option value="Sci-Fi">Sci-Fi</option>
                     <option value="Thriller">Thriller</option>
@@ -95,15 +119,15 @@
                     <option value="Documentary">Dokumentum</option>
                     <option value="Animation">Animációs</option>
                 </select>
-                <input type="number" name="length" placeholder="Hossz (perc)" required>
-                <input type="date" name="releaseDate" placeholder="Megjelenési dátum" required>
-                <input type="date" name="streamingDate" placeholder="Stremelési dátum" required>
-                <select name="type" required>
+                Hossz (perc) / évad<input type="number" name="length" required>
+                Megjelenési dátum<input type="date" name="releaseDate" required>
+                Stremelési dátum<input type="date" name="streamingDate" required>
+                Típus<select name="type" required>
                     <option value="film">Film</option>
                     <option value="series">Sorozat</option>
                 </select>
-                <input type="text" name="imageUrl" placeholder="Plakát URL" required>
-                <button type="submit">Hozzáadás</button>
+                Plakát URL<input type="text" name="imageUrl" required>
+                <button type="submit" class="button">Hozzáadás</button>
             </form>
         </div>
     </div>
