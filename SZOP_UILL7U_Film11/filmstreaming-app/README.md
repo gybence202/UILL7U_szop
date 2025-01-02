@@ -22,7 +22,7 @@ A Film Streaming Application egy Node.js alapú alkalmazás, amely lehetővé te
 
 1. Klónozd a repozitóriumot:
    ```bash
-   git clone https://github.com/gybence202/filmstreaming-app.git
+   git clone https://github.com/gybence202/UILL7U_szop/edit/main/SZOP_UILL7U_Film11/filmstreaming-app/README.md
    ```
 
 2. Navigálj a projekt könyvtárába:
