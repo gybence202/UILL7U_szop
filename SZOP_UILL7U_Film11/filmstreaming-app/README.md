@@ -20,27 +20,26 @@ A Film Streaming Application egy Node.js alapú alkalmazás, amely lehetővé te
 
 ## Telepítés
 
-1. Klónozd a repozitóriumot:
+1. Klónozza a repozitóriumot:
    ```bash
    git clone https://github.com/gybence202/UILL7U_szop
    ```
 
-2. Navigálj a projekt könyvtárába:
+2. Navigáljon a projekt könyvtárába:
    ```bash
    cd filmstreaming-app
    ```
 
-3. Telepítsd a függőségeket:
+3. Telepítse a függőségeket:
    ```bash
    npm install
    ```
 
-4. Hozz létre egy `.env` fájlt a gyökérkönyvtárban, és add hozzá az adatbázis konfigurációt:
+4. Hozzon létre egy `.env` fájlt a gyökérkönyvtárban, és adja hozzá az adatbázis konfigurációt:
    ```env
     DATABASE_URL=mongodb://localhost:3000/sajatlista
     PORT=3000
-    JWT_SECRET=your_jwt_secret
-    IMAGE_BASE_URL=http://localhost:3000/public/images/
+    JWT_SECRET=jwt_secret
 
 
     DB_HOST=localhost
@@ -50,12 +49,12 @@ A Film Streaming Application egy Node.js alapú alkalmazás, amely lehetővé te
     DB_DIALECT=mysql
    ```
 
-5. Indítsd el az alkalmazást:
+5. Indítsa el az alkalmazást:
    ```bash
    npm start
    ```
 
-6. Nyisd meg a böngészőt, és navigálj a `http://localhost:3000` címre az alkalmazás eléréséhez.
+6. Nyissa meg a böngészőt, és navigáljon a `http://localhost:3000` címre az alkalmazás eléréséhez.
 
 ## Projekt Struktúra
 
@@ -95,19 +94,19 @@ filmstreaming-app/
 
 ### Felhasználói Hitelesítés
 
-- Navigálj a bejelentkezési oldalra (`http://localhost:3000`).
-- Add meg a felhasználóneved és jelszavad a bejelentkezéshez.
-- Ha a hitelesítés sikeres, átirányít a saját film listádra.
+- Navigáljon a bejelentkezési oldalra (`http://localhost:3000`).
+- Adja meg a felhasználóneved és jelszavad a bejelentkezéshez. (test: user/1234)
+- Ha a hitelesítés sikeres, átirányít a saját film listára.
 
 ### Filmek Kezelése
 
-- Új film hozzáadásához kattints az "Új Hozzáadás" gombra, töltsd ki az űrlapot, és küldd el.
-- Film szerkesztéséhez kattints a film kártyáján található szerkesztés gombra, végezd el a módosításokat, majd mentsd el.
-- Film törléséhez kattints a film kártyáján található törlés gombra.
+- Új film hozzáadásához kattintson az "Új Hozzáadás" gombra, töltse ki az űrlapot, és küldje el.
+- Film szerkesztéséhez kattintson a film kártyáján található szerkesztés ikonra, végezze el a módosításokat, majd mentse el.
+- Film törléséhez kattintson a film kártyáján található törlés gombra.
 
 ### Kijelentkezés
 
-- Kattints a "Kijelentkezés" gombra a kijelentkezéshez.
+- Kattintson a "Kijelentkezés" gombra a kijelentkezéshez.
 
 
 
