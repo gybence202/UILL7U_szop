@@ -37,16 +37,16 @@ A Film Streaming Application egy Node.js alapú alkalmazás, amely lehetővé te
 
 4. Hozzon létre egy `.env` fájlt a gyökérkönyvtárban, és adja hozzá az adatbázis konfigurációt:
    ```env
-    DATABASE_URL=mongodb://localhost:3000/sajatlista
-    PORT=3000
-    JWT_SECRET=jwt_secret
+   PORT=3000
+   JWT_SECRET=jwt_secret
+   IMAGE_BASE_URL=http://localhost:3000/public/images/
 
 
-    DB_HOST=localhost
-    DB_USER=root
-    DB_PASSWORD=
-    DB_NAME=sajatlista
-    DB_DIALECT=mysql
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=
+   DB_NAME=sajatlista
+   DB_DIALECT=mysql
    ```
 
 5. Indítsa el az alkalmazást:
