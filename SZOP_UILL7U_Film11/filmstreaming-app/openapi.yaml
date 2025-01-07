@@ -1,0 +1,260 @@
+openapi: 3.0.0
+info:
+  title: Film Streaming App API
+  description: API dokumentáció a Film Streaming App-hoz
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Helyi fejlesztői szerver
+paths:
+  /filmek:
+    get:
+      summary: Az összes film lekérése
+      responses:
+        '200':
+          description: A filmek listája
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Film'
+    post:
+      summary: Új film létrehozása
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+      responses:
+        '201':
+          description: Film létrehozva
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+  /filmek/{id}:
+    get:
+      summary: Film lekérése ID alapján
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A film azonosítója
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Egy film objektum
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '404':
+          description: Film nem található
+    put:
+      summary: Film frissítése ID alapján
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A film azonosítója
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+      responses:
+        '200':
+          description: Film frissítve
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '404':
+          description: Film nem található
+    delete:
+      summary: Film törlése ID alapján
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A film azonosítója
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Film törölve
+        '404':
+          description: Film nem található
+  /login:
+    post:
+      summary: Felhasználó bejelentkezés
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Sikeres bejelentkezés
+        '401':
+          description: Hibás felhasználónév vagy jelszó
+  /sajatlista:
+    get:
+      summary: Felhasználó filmjeinek lekérése
+      responses:
+        '200':
+          description: Filmek sikeres lekérése
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Film'
+    post:
+      summary: Új film hozzáadása
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                genre:
+                  type: string
+                length:
+                  type: integer
+                releaseDate:
+                  type: string
+                  format: date
+                streamingDate:
+                  type: string
+                  format: date
+                type:
+                  type: string
+                imageUrl:
+                  type: string
+      responses:
+        '201':
+          description: Film sikeresen hozzáadva
+        '400':
+          description: Hibás kérés
+  /sajatlista/{id}:
+    get:
+      summary: Film lekérése ID alapján
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Film sikeresen lekérve
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '404':
+          description: Film nem található
+    put:
+      summary: Film frissítése ID alapján
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                genre:
+                  type: string
+                length:
+                  type: integer
+                releaseDate:
+                  type: string
+                  format: date
+                streamingDate:
+                  type: string
+                  format: date
+                type:
+                  type: string
+                imageUrl:
+                  type: string
+      responses:
+        '200':
+          description: Film sikeresen frissítve
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '404':
+          description: Film nem található
+    delete:
+      summary: Film törlése ID alapján
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Film sikeresen törölve
+        '404':
+          description: Film nem található
+  /logout:
+    post:
+      summary: Felhasználó kijelentkezés
+      responses:
+        '200':
+          description: Sikeres kijelentkezés
+        '500':
+          description: Nem sikerült kijelentkezni
+components:
+  schemas:
+    Film:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        genre:
+          type: string
+        duration:
+          type: integer
+        releaseDate:
+          type: string
+          format: date
+        streamingDate:
+          type: string
+          format: date
+        type:
+          type: string
+          enum:
+            - Film
+            - Sorozat
+        imageUrl:
+          type: string
+          format: uri

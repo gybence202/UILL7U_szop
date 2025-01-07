@@ -1,0 +1,209 @@
+body {
+    background-color: #fffcf3;
+}
+
+/* Card styling */
+.card {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    vertical-align: top;
+    height: 640px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+.card h2 {
+    font-size: 1.5em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.card p {
+    margin: 8px 0;
+}
+
+/* Header container styling */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    position: relative;
+}
+
+.header-container .logout-button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #b16713;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.header-container .logout-button:hover {
+    background-color: #b16713;
+    transition: .2s;
+}
+/* Dropdown styling */
+.dropdown {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.dropdown-content {
+    display: none;
+    text-align: left;
+    margin: 0 auto;
+    width: 300px;
+}
+
+.dropdown-content input, .dropdown-content select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.dropdown-content button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ca7513;
+    transition: .2s;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content button:hover {
+    background-color: #b16713;
+    transition: .2s;
+}
+
+/* Button styling */
+.button {
+    background-color: #b16713;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #b16713;
+    transition: .2s;
+}
+
+/* Delete button styling */
+.delete-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    transition: .1s;
+    font-weight: bold;
+}
+
+.delete-btn:hover {
+    background-color: rgb(219, 0, 0);
+    transition: .1s;
+}
+
+/* Edit button styling */
+.edit-btn {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: #5e5e5e;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    transition: .1s;
+    font-weight: bold;
+}
+
+.edit-btn:hover {
+    background-color: #808080;
+    transition: .1s;
+}
+
+/* Save button styling */
+.save-btn {
+    display: none;
+    width: 100%;
+    padding: 10px;
+    background-color: #ca7513;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* Title styling */
+.sjl {
+    text-align: center;
+    font-size: 3em;
+    margin-top: 50px;
+    color: #8d520e;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    flex-grow: 1;
+}
+
+.title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-top: 20px;
+    color: #ca7513;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Spacer styling */
+.spacer {
+    width: 100px;
+}
